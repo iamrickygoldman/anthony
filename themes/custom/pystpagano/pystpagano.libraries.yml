@@ -5,9 +5,10 @@ global-styling:
       css/style.css: {}
   js:
     js/scripts.js: {}
-bootstrap-scripts:
-  version: 3.3.6
-  js:
-    js/bootstrap/bootstrap.min.js: {}
-  dependencies:
-    - core/jquery
+fonts:
+  license:
+    name: SIL Open Font Liscense, 1.1
+    url: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+  css:
+    theme:
+      //fonts.googleapis.com/css?family=Noto+Seif:400,700|Open+Sans:400,400italic,700,700italic: { type: external }

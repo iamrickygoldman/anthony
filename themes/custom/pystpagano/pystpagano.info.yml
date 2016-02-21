@@ -1,12 +1,26 @@
 name: PYST Pagano
 type: theme
-description: PYST Pagano custom theme.
+description: PYST Pagano custom sub-theme of Zymphonies.
 core: 8.x
+base theme: business_responsive_theme
 libraries:
   - pystpagano/global-styling
+  - pystpagano/fonts
 regions:
-  header: Header
-  content: Content
-  footer: Footer
-  page_top: Page top
-  page_bottom: Page bottom
+  header: 'Header'
+  primary_menu: 'Primary Menu'
+  slideshow: 'Slideshow'  
+  topwidget_first: 'Top First Widget'
+  topwidget_second: 'Top Second Widget'
+  topwidget_third: 'Top Third Widget' 
+  highlighted: 'Highlighted' 
+  page_title: 'Page Title'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  sidebar_first: 'Left Sidebar'
+  sidebar_second: 'Right Sidebar' 
+  footer_first: 'Footer First Widget'
+  footer_second: 'Footer Second Widget'
+  footer_third: 'Footer Third Widget'
+  footer_menu: 'Footer Menu'
+  auto_hidden_block: 'Auto hidden blocks'
