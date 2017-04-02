@@ -63,8 +63,8 @@ use Drupal\Core\Url;
  *   class StuffDoingClass implements StuffDoingInterface {
  *     protected $lockBackend;
  *
- *     public function __construct(LockBackendInterface $lockBackend) {
- *       $this->lockBackend = $lockBackend;
+ *     public function __construct(LockBackendInterface $lock_backend) {
+ *       $this->lockBackend = $lock_backend;
  *     }
  *
  *     public function doStuff() {
@@ -81,7 +81,7 @@ class Drupal {
   /**
    * The current system version.
    */
-  const VERSION = '8.0.1';
+  const VERSION = '8.2.7';
 
   /**
    * Core API compatibility.
@@ -423,11 +423,11 @@ class Drupal {
    * Returns the entity query object for this entity type.
    *
    * @param string $entity_type
-   *   The entity type, e.g. node, for which the query object should be
+   *   The entity type (for example, node) for which the query object should be
    *   returned.
    * @param string $conjunction
-   *   AND if all conditions in the query need to apply, OR if any of them is
-   *   enough. Optional, defaults to AND.
+   *   (optional) Either 'AND' if all conditions in the query need to apply, or
+   *   'OR' if any of them is sufficient. Defaults to 'AND'.
    *
    * @return \Drupal\Core\Entity\Query\QueryInterface
    *   The query object that can query the given entity type.
@@ -440,11 +440,11 @@ class Drupal {
    * Returns the entity query aggregate object for this entity type.
    *
    * @param string $entity_type
-   *   The entity type, e.g. node, for which the query object should be
+   *   The entity type (for example, node) for which the query object should be
    *   returned.
    * @param string $conjunction
-   *   AND if all conditions in the query need to apply, OR if any of them is
-   *   enough. Optional, defaults to AND.
+   *   (optional) Either 'AND' if all conditions in the query need to apply, or
+   *   'OR' if any of them is sufficient. Defaults to 'AND'.
    *
    * @return \Drupal\Core\Entity\Query\QueryAggregateInterface
    *   The query object that can query the given entity type.
@@ -556,8 +556,7 @@ class Drupal {
    * Renders a link with a given link text and Url object.
    *
    * This method is a convenience wrapper for the link generator service's
-   * generate() method. For detailed documentation, see
-   * \Drupal\Core\Routing\LinkGeneratorInterface::generate().
+   * generate() method.
    *
    * @param string $text
    *   The link text for the anchor tag.
