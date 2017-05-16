@@ -1,0 +1,31 @@
+datebook.content:
+  path: '/datebook'
+  defaults:
+    _controller: '\Drupal\datebook\Controller\DatebookController::content'
+    _title: 'Datebook Title'
+  requirements:
+    _permission: 'access content'
+
+datebook.get:
+  path: '/datebook/get'
+  defaults:
+    _controller: '\Drupal\datebook\Controller\DatebookController::get'
+    _title: 'Datebook Get'
+  requirements:
+    _permission: 'get calendar'
+
+datebook.save:
+  path: '/datebook/save'
+  defaults:
+    _controller: '\Drupal\datebook\Controller\DatebookController::save'
+    _title: 'Datebook Save'
+  requirements:
+    _permission: 'save calendar'
+
+datebook.config:
+  path: '/admin/config/development/datebook'
+  defaults:
+    _form: 'Drupal\datebook\Form\DatebookForm'
+    _title: 'Datebook settings'
+  requirements:
+    _permission: 'administer site configuration'

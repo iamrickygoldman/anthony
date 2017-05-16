@@ -1,0 +1,11 @@
+event-calendar:
+  version: 1.0
+  css:
+    layout:
+      assets/css/calendar.min.css: {}
+  js:
+    assets/js/calendar.min.js: {}
+    assets/js/datebook.js: {}
+  dependencies:
+    - core/jquery
+    - core/underscore

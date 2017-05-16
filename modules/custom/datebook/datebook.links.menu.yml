@@ -1,0 +1,6 @@
+datebook.admin:
+  title: 'Datebook module settings'
+  description: 'Datebook module settings.'
+  parent: system.admin_config_development
+  route_name: datebook.config
+  weight: 100
