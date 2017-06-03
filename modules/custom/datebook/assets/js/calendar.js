@@ -77,7 +77,7 @@ if(!String.prototype.formatNum) {
 		// Useful if response is not constrained by date.
 		events_cache: false,
 		// Set format12 to true if you want to use 12 Hour format instead of 24 Hour
-		format12: false,
+		format12: true,
 		am_suffix: "AM",
 		pm_suffix: "PM",
 		// Path to templates should end with slash /. It can be as relative
