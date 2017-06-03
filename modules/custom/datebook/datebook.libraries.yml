@@ -9,3 +9,12 @@ event-calendar:
   dependencies:
     - core/jquery
     - core/underscore
+datetimepicker:
+  version: 1.0
+  css:
+    layout:
+      assets/css/jquery.datetimepicker.min.css: {}
+  js:
+    assets/js/jquery.datetimepicker.full.min.js: {}
+  dependencies:
+    - core/jquery

@@ -1089,6 +1089,52 @@ if(!String.prototype.formatNum) {
 				$('.modal-body', modal).html(ifrm);
 			}
 
+			if(self.options.modal_type == "ajax") {
+				var date = new Date(event.start);
+				var day = date.getDate();
+				var month = date.getMonth() + 1;
+				var year = date.getFullYear();
+				var hours = date.getHours();
+				var ampm = "";
+				if (hours === 0) {
+					hours = 12;
+					ampm = "AM";
+				} else if (hours < 12) {
+					ampm = "AM";
+				} else if (hours === 12) {
+					ampm = "PM";
+				} else {
+					hours -= 12;
+					ampm = "PM";
+				}
+				var minutes = "0" + date.getMinutes();
+				var formattedDateStart = day + "/" + month + "/" + year;
+				var formattedTimeStart = hours + ':' + minutes.substr(-2) + " " + ampm;
+				date = new Date(event.end);
+				var day = date.getDate();
+				var month = date.getMonth() + 1;
+				var year = date.getFullYear();
+				hours = date.getHours();
+				ampm = "";
+				if (hours === 0) {
+					hours = 12;
+					ampm = "AM";
+				} else if (hours < 12) {
+					ampm = "AM";
+				} else if (hours === 12) {
+					ampm = "PM";
+				} else {
+					hours -= 12;
+					ampm = "PM";
+				}
+				minutes = "0" + date.getMinutes();
+				var formattedDateEnd = day + "/" + month + "/" + year;
+				var formattedTimeEnd = hours + ':' + minutes.substr(-2) + " " + ampm;
+				$('.modal-timeframe h5').html(formattedDateStart);
+				$('.modal-timeframe h6').html(formattedTimeStart + " &ndash; " + formattedTimeEnd);
+				$('.modal-body', modal).html("<p>" + url + "</p>");
+			}
+
 			if(!modal.data('handled.bootstrap-calendar') || (modal.data('handled.bootstrap-calendar') && modal.data('handled.event-id') != event.id)) {
 				modal.off('show.bs.modal')
 					.off('shown.bs.modal')
@@ -1119,6 +1165,7 @@ if(!String.prototype.formatNum) {
 						//	set the title of the bootstrap modal
 						if(_.isFunction(self.options.modal_title)) {
 							modal.find(".modal-title").html(self.options.modal_title(event));
+							modal.find(".modal-header").children("h3").html(self.options.modal_title(event));
 						}
 					})
 					.on('shown.bs.modal', function() {

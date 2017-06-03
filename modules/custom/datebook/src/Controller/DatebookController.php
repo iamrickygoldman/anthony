@@ -8,28 +8,49 @@ class DatebookController extends ControllerBase
 {
 	public function content()
 	{
+		$user = \Drupal::currentUser();
+		$canSave = $user->hasPermission('save calendar');
 		return array(
 			'#theme' => 'datebook',
-			'#controller' => $this->t('controller var'),
+			'#canSave' => $canSave,
 		);
 	}
 
 	public function get()
 	{
+		/*
 		$start = $_REQUEST['from'] / 1000;
 		$start = date('Y-m-d H:i:s', $start);
 		$end = $_REQUEST['to'] / 1000;
 		$end = date('Y-m-d H:i:s', $end);
+		*/
 
-		$data = array();
-		$data[] = array(
-			'id' => '0',
-			'title' => 'Practice',
-			'description' => 'Full team training.',
-			'class' => 'event-important',
-			'start' => date('U') * 1000,
-			'end' => (date('U') + 2 * 60 * 60) * 1000,
+		$fields = array(
+			'did',
+			'title',
+			'description',
+			'start',
+			'end',
 		);
+		$data = db_select('datebook', 'e')
+  			->fields('e', $fields)
+  			->execute()
+  			->fetchAll();
+
+  		foreach ($data as $key => $item) {
+  			$item->class = 'event-important';
+  			$item->id = $item->did;
+  			$item->url = $item->description;
+
+  			$start = \DateTime::createFromFormat('Y-m-d H:i:s', $item->start, new \DateTimeZone('GMT'));
+  			$start->setTimezone('America/Los_Angeles');
+  			$item->start = $start->getTimeStamp() * 1000;
+			$end = \DateTime::createFromFormat('Y-m-d H:i:s', $item->end, new \DateTimeZone('GMT'));
+			$end->setTimezone('America/Los_Angeles');
+			$item->end = $end->getTimeStamp() * 1000;
+
+  			$data[$key] = (array)$item;
+  		}
 
 		echo json_encode(array('success' => 1, 'result' => $data));
 		die;
@@ -37,23 +58,22 @@ class DatebookController extends ControllerBase
 
 	public function save()
 	{
-		$start = new \DateTime();
-		$start->add('10 hours');
-		$start->add('2 days');
-		$end = new \DateTime();
-		$end->add('12 hours');
-		$end->add('2 days');
+		$start = \DateTime::createFromFormat('m/d/Y h:i A', $_POST['date_start'], new \DateTimeZone('America/Los_Angeles'));
+		$start->setTimezone(new \DateTimeZone('GMT'));
+		$end = \DateTime::createFromFormat('m/d/Y h:i A', $_POST['date_end'], new \DateTimeZone('America/Los_Angeles'));
+		$end->setTimezone(new \DateTimeZone('GMT'));
 		$fields = array(
-			'uid' => '1',
-			'title' => 'Spring Training',
-			'description' => '1-on-1 spring training with Sally Davis',
+			'uid' => '3',
+			'title' => $_POST['date_title'],
+			'description' => $_POST['date_description'],
 			'start' => $start->format('Y-m-d H:i:s'),
 			'end' => $end->format('Y-m-d H:i:s'),
 		);
+		
 		db_insert('datebook')
 			->fields($fields)
 			->execute();
 
-		die;
+		return $this->redirect('datebook.content');
 	}
 }

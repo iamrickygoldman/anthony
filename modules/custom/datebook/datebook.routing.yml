@@ -2,7 +2,7 @@ datebook.content:
   path: '/datebook'
   defaults:
     _controller: '\Drupal\datebook\Controller\DatebookController::content'
-    _title: 'Datebook Title'
+    _title: 'Calendar'
   requirements:
     _permission: 'access content'
 

@@ -1,5 +1,3 @@
-edit calendar:
-  title: 'Edit Calendar'
 get calendar:
   title: 'Get Calendar'
 save calendar:

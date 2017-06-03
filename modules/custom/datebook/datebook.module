@@ -4,15 +4,10 @@ function datebook_theme($existing, $type, $theme, $path) {
 	$variables = array(
 		'datebook' => array(
 			'variables' => array(
-				'test' => NULL,
-				'controller' => NULL,
+				'canSave' => NULL,
 			),
 			'template' => 'calendar',
 		),
 	);
 	return $variables;
-}
-
-function template_preprocess_datebook(&$variables) {
-	$variables['test'] = 'test calendar';
 }

@@ -1,8 +1,12 @@
 jQuery(function($){
 	$(document).ready(function(){
+		// Datebook Calendar
 		var options = {
 			//events_source: function() { return []; },
 			events_source: '/datebook/get',
+			modal: '#events-modal',
+			modal_type: 'ajax',
+			modal_title: function(event) { return event.title },
 			view: 'month',
 			tmpl_path: '/modules/custom/datebook/assets/tmpls/',
 			tmpl_cache: false,
@@ -45,6 +49,15 @@ jQuery(function($){
 			$this.click(function() {
 				calendar.view($this.data('calendar-view'));
 			});
+		});
+
+		// Datetimepicker
+		$('.datetimepicker').datetimepicker({
+			step: 30,
+			theme: 'dark',
+			yearStart: 2010,
+			formatTime:'g:i A', 
+			format: 'm/d/Y h:i A',
 		});
 	});
 });
