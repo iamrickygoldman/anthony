@@ -4,7 +4,7 @@ save calendar:
   title: 'Save Calendar'
 delete calendar:
   title: 'Delete Calendar'
-studen save calendar:
-  title: 'Studen Save Calendar'
-studen delete calendar:
-  title: 'Studen Delete Calendar'
+student save calendar:
+  title: 'Student Save Calendar'
+student delete calendar:
+  title: 'Student Delete Calendar'
