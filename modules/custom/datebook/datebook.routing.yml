@@ -22,6 +22,14 @@ datebook.save:
   requirements:
     _permission: 'save calendar'
 
+datebook.delete:
+  path: '/datebook/delete/{id}'
+  defaults:
+    _controller: '\Drupal\datebook\Controller\DatebookController::delete'
+    _title: 'Datebook Delete'
+  requirements:
+    _permission: 'delete calendar'
+
 datebook.config:
   path: '/admin/config/development/datebook'
   defaults:

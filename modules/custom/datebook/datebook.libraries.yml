@@ -4,7 +4,7 @@ event-calendar:
     layout:
       assets/css/calendar.min.css: {}
   js:
-    assets/js/calendar.min.js: {}
+    assets/js/calendar.js: {}
     assets/js/datebook.js: {}
   dependencies:
     - core/jquery

@@ -59,5 +59,34 @@ jQuery(function($){
 			formatTime:'g:i A', 
 			format: 'm/d/Y h:i A',
 		});
+
+		// Validation
+		$("#datebook-save").submit(function(e){
+			var valid = true;
+			if ($("#date_title").val() == '') {
+				$("#date_title").parent().addClass('invalid');
+				valid = false;
+			}
+			else {
+				$("#date_title").parent().removeClass('invalid');
+			}
+			var dateExp = new RegExp(/[01][0-9]\/[0123][0-9]\/20[0-9][0-9] [01][0-9]:[0-5][0-9] [AP]M/);
+			if (!dateExp.test($("#date_start").val())) {
+				$("#date_start").parent().addClass('invalid');
+				valid = false;
+			}
+			else {
+				$("#date_starte").parent().removeClass('invalid');
+			}
+			if (!dateExp.test($("#date_end").val())) {
+				$("#date_end").parent().addClass('invalid');
+				valid = false;
+			}
+			else {
+				$("#date_ende").parent().removeClass('invalid');
+			}
+
+			return valid;
+		})
 	});
 });

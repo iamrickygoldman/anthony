@@ -1090,9 +1090,11 @@ if(!String.prototype.formatNum) {
 			}
 
 			if(self.options.modal_type == "ajax") {
+  				var description = event.description.replace(/(?:\r\n|\r|\n)/g, '<br />');
+
 				var date = new Date(event.start);
-				var day = date.getDate();
-				var month = date.getMonth() + 1;
+				var day = "0" + date.getDate();
+				var month = "0" + (date.getMonth() + 1);
 				var year = date.getFullYear();
 				var hours = date.getHours();
 				var ampm = "";
@@ -1107,12 +1109,14 @@ if(!String.prototype.formatNum) {
 					hours -= 12;
 					ampm = "PM";
 				}
+				hours = "0" + hours;
 				var minutes = "0" + date.getMinutes();
-				var formattedDateStart = day + "/" + month + "/" + year;
-				var formattedTimeStart = hours + ':' + minutes.substr(-2) + " " + ampm;
+				var formattedDateStart = month.substr(-2) + "/" + day.substr(-2) + "/" + year;
+				var formattedTimeStart = hours.substr(-2) + ':' + minutes.substr(-2) + " " + ampm;
+				var formattedStartInput = month.substr(-2) + "/" + day.substr(-2) + "/" + year + " " + hours.substr(-2) + ":" + minutes.substr(-2) + " " + ampm;
 				date = new Date(event.end);
-				var day = date.getDate();
-				var month = date.getMonth() + 1;
+				var day = "0" + date.getDate();
+				var month = "0" + (date.getMonth() + 1);
 				var year = date.getFullYear();
 				hours = date.getHours();
 				ampm = "";
@@ -1127,12 +1131,30 @@ if(!String.prototype.formatNum) {
 					hours -= 12;
 					ampm = "PM";
 				}
+				hours = "0" + hours;
 				minutes = "0" + date.getMinutes();
-				var formattedDateEnd = day + "/" + month + "/" + year;
-				var formattedTimeEnd = hours + ':' + minutes.substr(-2) + " " + ampm;
+				var formattedDateEnd = month.substr(-2) + "/" + day.substr(-2) + "/" + year;
+				var formattedTimeEnd = hours.substr(-2) + ':' + minutes.substr(-2) + " " + ampm;
+				var formattedEndInput = month.substr(-2) + "/" + day.substr(-2) + "/" + year + " " + hours.substr(-2) + ":" + minutes.substr(-2) + " " + ampm;
+
 				$('.modal-timeframe h5').html(formattedDateStart);
 				$('.modal-timeframe h6').html(formattedTimeStart + " &ndash; " + formattedTimeEnd);
-				$('.modal-body', modal).html("<p>" + url + "</p>");
+				$('.modal-timeframe h4').html(event.location);
+				$('.modal-body', modal).html("<p>" + description + "</p>");
+				$('.modal-footer .btn[data-task="delete"]').attr('href', '/datebook/delete/' + id);
+				
+				$('.modal-footer .btn[data-task="edit"]').click(function(){
+					$('#datebook-save h3').html('Edit Activity');
+					$('#date_id').val(id);
+					$('#date_title').val(event.title);
+					$('#date_description').val(event.description);
+					$('#date_location').val(event.location);
+					$("#date_start").val(formattedStartInput);
+					$("#date_end").val(formattedEndInput);
+					$('#date_type').val(event.type);
+					$('#date_student').val(event.sid);
+					document.body.scrollTop = document.documentElement.scrollTop = 0;
+				});
 			}
 
 			if(!modal.data('handled.bootstrap-calendar') || (modal.data('handled.bootstrap-calendar') && modal.data('handled.event-id') != event.id)) {

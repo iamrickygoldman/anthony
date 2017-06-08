@@ -2,3 +2,9 @@ get calendar:
   title: 'Get Calendar'
 save calendar:
   title: 'Save Calendar'
+delete calendar:
+  title: 'Delete Calendar'
+studen save calendar:
+  title: 'Studen Save Calendar'
+studen delete calendar:
+  title: 'Studen Delete Calendar'

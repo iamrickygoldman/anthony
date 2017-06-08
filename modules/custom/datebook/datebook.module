@@ -5,6 +5,10 @@ function datebook_theme($existing, $type, $theme, $path) {
 		'datebook' => array(
 			'variables' => array(
 				'canSave' => NULL,
+				'canDelete' => NULL,
+				'canStudentSave' => NULL,
+				'canStudentDelete' => NULL,
+				'students' => array(),
 			),
 			'template' => 'calendar',
 		),

@@ -2,29 +2,50 @@
 {{ attach_library('datebook/datetimepicker') }}
 
 {% if canSave == true %}
-<form class="datebook-save" action="/datebook/save" method="post">
-	<h3>Add Events</h3>
+<form id="datebook-save" class="datebook-save" action="/datebook/save" method="post">
+	<h3>Add Activity</h3>
 	<div class="datebook-fields row">
 		<div class="input-wrap col-sm-6">
-			<label for="date_title">Activity Title</label>
+			<label for="date_title">Activity Title*</label>
 			<input type="text" id="date_title" name="date_title"/>
 		</div>
 		<div class="input-wrap col-sm-6">
-			<label for="date_start">Start Time</label>
+			<label for="date_start">Start Time*</label>
 			<input type="text" class="datetimepicker" id="date_start" name="date_start" autocomplete="off"/>
 		</div>
 		<div class="input-wrap col-sm-6">
-			<label for="date_description">Activity Description (optional)</label>
+			<label for="date_location">Location</label>
+			<input type="text" id="date_location" name="date_location"/>
+		</div>
+		<div class="input-wrap col-sm-6">
+			<label for="date_end">End Time*</label>
+			<input type="text" class="datetimepicker" id="date_end" name="date_end" autocomplete="off"/>
+		</div>
+		<div class="input-wrap col-sm-6">
+			<label for="date_description">Activity Description</label>
 			<textarea id="date_description" name="date_description"></textarea>
 		</div>
 		<div class="input-wrap col-sm-6">
-			<label for="date_end">End Time</label>
-			<input type="text" class="datetimepicker" id="date_end" name="date_end" autocomplete="off"/>
+			<label for="date_type">Type</label>
+			<select id="date_type" name="date_type">
+				<option value="open">Open</option>
+				<option value="closed">Closed</option>
+			</select>
 		</div>
-		<div class="input-wrap col-sm-6 submit">
-			<input type="submit" value="Submit" class="btn btn-green"/>
+		<div class="input-wrap col-sm-6">
+			<label for="date_student">Student</label>
+			<select id="date_student" name="date_student">
+				<option value="">Select</option>
+			{% for value in students %}
+				<option value="{{ value.entity_id }}">{{ value.name }}</option>
+			{% endfor %}
+			</select>
+		</div>
+		<div class="input-wrap col-sm-12 submit">
+			<input type="submit" value="Save" class="btn btn-green"/>
 		</div>
 	</div>
+	<input type="hidden" value="" id="date_id" name="date_id"/>
 </form>
 {% endif %}
 
@@ -54,13 +75,23 @@
                 <h3>Event</h3>
             </div>
             <div class="modal-timeframe">
+            	<h4></h4>
             	<h5></h5>
             	<h6></h6>
             </div>
-            <div class="modal-body" style="min-height: 200px">
-            </div>
+            <div class="modal-body" style="min-height:200px;max-height:300px;overflow-y:scroll"></div>
             <div class="modal-footer">
-                <a href="#" data-dismiss="modal" class="btn btn-blue">Close</a>
+            {% if canDelete == true %}
+            	<a href="javascript:void(0);" data-task="delete" class="btn btn-red">Delete</a>
+            {% elseif canStudentDelete == true %}
+            	<a href="javascript:void(0);" data-task="student_delete" class="btn btn-red">Delete</a>
+            {% endif %}
+            {% if canSave == true %}
+            	<a href="javascript:void(0);" data-dismiss="modal" data-task="edit" class="btn btn-green">Edit</a>
+            {% elseif canStudentSave == true %}
+            	<a href="javascript:void(0);" data-dismiss="modal" data-task="student_edit" class="btn btn-green">Edit</a>
+            {% endif %}
+                <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-blue">Close</a>
             </div>
         </div>
     </div>

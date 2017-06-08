@@ -393,10 +393,13 @@ blockquote {
 	label {
 		font-size: 16px;
 	}
-	input[type="text"], .btn {
+	.invalid label {
+		color: @red-invalid;
+	}
+	input[type="text"], .btn, select {
 		height: 41px;
 	}
-	input[type="text"], textarea {
+	input[type="text"], textarea, select {
 		padding: 8px 12px;
 		width: 100%;
 		font-size: 14px;
@@ -404,7 +407,7 @@ blockquote {
 		color: @black;
 	}
 	textarea {
-		height: 120px;
+		height: 127px;
 	}
 }
 .datebook-buttons {
@@ -483,12 +486,19 @@ blockquote {
 	h2 {
 		text-align: center;
 	}
+	.event-info {
+		background-color: #2cce29;
+	}
+	.dh-event-info {
+		background-color: #c0ffbf !important;
+		border-color: #2cce29 !important;
+	}
 }
 #events-modal {
 	.modal-header {
 		h3 {
 			font-weight: bold;
-			font-size: 18px;
+			font-size: 22px;
 			margin: 0;
 		}
 	}
@@ -497,18 +507,27 @@ blockquote {
 		border-bottom: 1px dashed #e5e5e5;
 		h5 {
 			font-size: 16px;
-			font-weight: bold;
 			margin: 0 0 10px;
 		}
 		h6 {
 			font-size: 15px;
 			margin: 0;
 		}
+		h4 {
+			margin: 0 0 10px;
+			font-size: 16px;
+			font-weight: bold;
+		}
 	}
 	.modal-body {
 		p {
 			.serif;
 			font-size: 18px;
+		}
+	}
+	.modal-footer {
+		.btn {
+			margin-left: 10px;
 		}
 	}
 }
