@@ -57,21 +57,75 @@ img {
 }
 
 // Header
-#block-topmenu {
+.main-header {
+	padding: 15px 0;
+}
+#block-topmenu, #block-topmenulogged {
 	float: right;
 	.menu {
 		padding: 0;
-
+		margin: 4px 0 0;
 		.menu-item {
 			display: inline-block;
 			font-size: 15px;
 			.sans;
 			font-weight: 700;
+			margin-left: 15px;
 		}
+	}
+	@media (max-width:@screen-tb-max) {
+		display: none;
+	}
+	@media (max-width:@screen-mb-max) {
+		display: none;
 	}
 }
 #block-pystpagano-branding {
 	float: left;
+	@media (max-width:@screen-tb-max) {
+		float: none;
+		text-align: center;
+	}
+}
+#block-headerbooknow {
+	float: right;
+	margin: 0 25px 0 0;
+	p {
+		margin: 0;
+		a {
+			font-size: 20px;
+			.sans;
+			color: @green;
+			strong {
+				font-weight: 400;
+			}
+			em {
+				font-size: 26px;
+				color: @blue-dark;
+				.serif;
+				vertical-align: middle;
+				font-weight: 600;
+			}
+			&:hover, &:focus {
+				color: lighten(@green, 7%);
+				text-decoration: none;
+				em {
+					color: lighten(@blue-dark, 20%);
+				}
+			}
+		}
+	}
+	@media (max-width:@screen-sm-max) {
+		p a strong {
+			display: none;
+		}
+	}
+	@media (max-width:@screen-tb-max) {
+		margin: 18px 0 0;
+		display: block;
+		float: none;
+		text-align: center;
+	}
 }
 
 // Navbar
@@ -272,10 +326,12 @@ img {
 }
 
 // Home Banner
+.slideshow {
+	display: block;
+}
 #block-homebanner {
-	height: 545px;
-	height: 365px;
-	background: url(../images/background2.jpg) 0 0 no-repeat;
+	height: 474px;
+	background: url(../images/background3.jpg) 0 0 no-repeat;
 	background-size: cover;
 	position: relative;
 	margin-bottom: 20px;
@@ -283,34 +339,83 @@ img {
 	.body {
 		//background: rgba(255,255,255,0.6);
 		position: absolute;
-		top: 35px;
-		right: 120px;
-		text-align: right;
+		top: 23px;
+		left: 120px;
 	}
-	h2, h3, h4 {
+	h3, h5 {
 		margin: 0;
-		.serif;
-		color: @black;
-		text-shadow: #fff 40px 0px 60px,#fff -20px 0px 60px,#fff 40px 40px 80px,#fff -20px 40px 80px;
-	}
-	h2 {
-		font-size: 50px;
-		//text-shadow: 1px 2px 2px #607f35, 0 0 0 #000000, 1px 2px 2px #607f35;
+		.serif2();
+		line-height: 1.25em;
 	}
 	h3 {
-		font-size: 35px;
+		font-size: 38px;
+		max-width: 380px;
+		color: @gray-dark;
+		text-shadow: #fff 40px 0px 60px,#fff -20px 0px 60px,#fff 40px 40px 80px,#fff -20px 40px 80px;
 	}
-	h4 {
-		font-size: 50px;
+	h5 {
+		font-size: 48px;
+		color: @white;
+		margin-top: 117px;
+		& + h5 {
+			margin-top: 5px;
+			margin-left: 196px;
+		}
 	}
 	.btn {
 		position: absolute;
 		bottom: 40px;
-		right: 120px;
+		left: 50%;
+		width: 200px;
+		margin-left: -100px;
 	}
 	@media (max-width:@screen-sm-max) {
-		.body, .btn {
-			right: 60px;
+		height: 384px;
+		.body {
+			left: 60px;
+		}
+		h3 {
+			font-size: 34px;
+		}
+		h5 {
+			margin-top: 75px;
+			font-size: 38px;
+			& + h5 {
+				margin-left: 146px;
+			}
+		}
+	}
+	@media (max-width:@screen-tb-max) {
+		h3 {
+			font-size: 30px;
+			max-width: 310px;
+		}
+		h5 {
+			font-size: 33px;
+			margin-top: 85px;
+			& + h5 {
+				margin-left: 126px;
+			}
+		}
+	}
+	@media (max-width:@screen-mb-max) {
+		text-align: center;
+		.body {
+			left: 0;
+			padding: 0 20px;
+		}
+		h3 {
+			font-size: 24px;
+			max-width: 260px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		h5 {
+			font-size: 24px;
+			margin-top: 112px;
+			& + h5 {
+				margin-left: 0;
+			}
 		}
 	}
 }
@@ -373,12 +478,15 @@ blockquote {
 .datebook-save {
 	background: @gray-light;
 	border: 1px solid darken(@gray-light, 10%);
-	padding: 20px;
 	margin-bottom: 20px;
 	h3 {
 		.serif;
 		font-size: 24px;
-		margin: 0 0 20px;
+		padding: 20px;
+		margin: 0;
+	}
+	.datebook-fields {
+		padding: 0 20px 20px;
 	}
 	.input-wrap {
 		margin-bottom: 20px;
@@ -523,6 +631,24 @@ blockquote {
 		background-color: #c0ffbf !important;
 		border-color: #2cce29 !important;
 	}
+	.legend {
+		list-style: none;
+		padding: 0;
+		margin: 15px 10px;
+		li {
+			display: inline-block;
+			margin-right: 22px;
+		}
+		.event {
+			display: inline-block;
+			margin: 0 0 3px;
+			vertical-align: middle;
+		}
+		span {
+			margin-left: 5px;
+			vertical-align: middle;
+		}
+	}
 }
 #events-modal {
 	.modal-header {
@@ -556,6 +682,26 @@ blockquote {
 		}
 	}
 	.modal-footer {
+		.book-now {
+			float: left;
+			font-size: 20px;
+			.sans;
+			color: @green;
+			margin-top: 10px;
+			em {
+				font-size: 26px;
+				color: @blue-dark;
+				.serif;
+				vertical-align: middle;
+			}
+			&:hover, &:focus {
+				color: lighten(@green, 7%);
+				text-decoration: none;
+				em {
+					color: lighten(@blue-dark, 20%);
+				}
+			}
+		}
 		.btn {
 			margin-left: 10px;
 		}

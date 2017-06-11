@@ -65,6 +65,10 @@
 <div class="datebook-calendar">
 	<h2 class="calendar-title"></h2>
 	<div id="calendar"></div>
+	<ul class="legend">
+		<li><i class="event event-info"></i><span>Open Session</span></li>
+		<li><i class="event event-important"></i><span>Closed Session</span></li>
+	</ul>
 </div>
 
 <div class="modal fade" id="events-modal">
@@ -81,6 +85,7 @@
             </div>
             <div class="modal-body" style="min-height:200px;max-height:300px;overflow-y:scroll"></div>
             <div class="modal-footer">
+            	<a href="tel:8477781398" class="book-now">Book Now - <em>847-778-1398</em></a>
             {% if canDelete == true %}
             	<a href="javascript:void(0);" data-task="delete" class="btn btn-red">Delete</a>
             {% elseif canStudentDelete == true %}

@@ -1142,6 +1142,11 @@ if(!String.prototype.formatNum) {
 				$('.modal-timeframe h4').html(event.location);
 				$('.modal-body', modal).html("<p>" + description + "</p>");
 				$('.modal-footer .btn[data-task="delete"]').attr('href', '/datebook/delete/' + id);
+				if (event.class == 'event-important') {
+					$('.modal-footer .book-now').hide();
+				} else {
+					$('.modal-footer .book-now').show();
+				}
 				
 				$('.modal-footer .btn[data-task="edit"]').click(function(){
 					$('#datebook-save h3').html('Edit Activity');
