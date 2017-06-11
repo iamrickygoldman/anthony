@@ -1151,8 +1151,19 @@ if(!String.prototype.formatNum) {
 					$('#date_location').val(event.location);
 					$("#date_start").val(formattedStartInput);
 					$("#date_end").val(formattedEndInput);
+
+					$('#date_type')[0].sumo.selectItem(event.type);
 					$('#date_type').val(event.type);
-					$('#date_student').val(event.sid);
+					
+					$("#date_student option").each(function(){
+						$("#date_student")[0].sumo.unSelectItem($(this).val());
+						$(this).prop('selected', false);;
+						if (event.students !== null && event.students.includes($(this).val())) {
+							$("#date_student")[0].sumo.selectItem($(this).val());
+							$(this).prop('selected', true);
+						}
+					});
+
 					document.body.scrollTop = document.documentElement.scrollTop = 0;
 				});
 			}

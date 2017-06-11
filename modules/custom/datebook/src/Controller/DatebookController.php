@@ -50,7 +50,7 @@ class DatebookController extends ControllerBase
 			'start',
 			'end',
 			'type',
-			'sid',
+			'students',
 		);
 		$data = db_select('datebook', 'e')
   			->fields('e', $fields)
@@ -75,6 +75,8 @@ class DatebookController extends ControllerBase
 			$end = \DateTime::createFromFormat('Y-m-d H:i:s', $item->end, new \DateTimeZone('GMT'));
 			$end->setTimezone('America/Los_Angeles');
 			$item->end = $end->getTimeStamp() * 1000;
+
+			$item->students = json_decode($item->students);
 
   			$data[$key] = (array)$item;
   		}
@@ -105,7 +107,7 @@ class DatebookController extends ControllerBase
 			'type' => $_POST['date_type'],
 		);
 		if ($_POST['date_student']) {
-			$fields['sid'] = $_POST['date_student'];
+			$fields['students'] = json_encode($_POST['date_student']);
 		}
 		
 		if ($_POST['date_id']) {

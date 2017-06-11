@@ -402,12 +402,42 @@ blockquote {
 	input[type="text"], textarea, select {
 		padding: 8px 12px;
 		width: 100%;
-		font-size: 14px;
+		font-size: 15px;
 		.sans;
 		color: @black;
 	}
 	textarea {
 		height: 127px;
+	}
+	.SumoSelect {
+		height: 41px;
+		width: 100%;
+		> .CaptionCont {
+			height: 100%;
+			padding: 8px 12px;
+			width: 100%;
+			font-size: 15px;
+			.sans;
+			color: @black;
+			> span {
+				line-height: 25px;
+			}
+		}
+		> .optWrapper {
+			> .options {
+				li.opt {
+					padding: 8px 12px;
+					label {
+						font-size: 15px;
+						font-weight: normal;
+						margin: 0;
+					}
+				}
+			}
+			&.multiple >.options li.opt.selected span i {
+				background-color: @blue-dark;
+			}
+		}
 	}
 }
 .datebook-buttons {

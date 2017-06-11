@@ -1,5 +1,6 @@
 {{ attach_library('datebook/event-calendar') }}
 {{ attach_library('datebook/datetimepicker') }}
+{{ attach_library('pystpagano/dropdowns') }}
 
 {% if canSave == true %}
 <form id="datebook-save" class="datebook-save" action="/datebook/save" method="post">
@@ -22,20 +23,19 @@
 			<input type="text" class="datetimepicker" id="date_end" name="date_end" autocomplete="off"/>
 		</div>
 		<div class="input-wrap col-sm-6">
-			<label for="date_description">Activity Description</label>
+			<label for="date_description">Trainer Notes</label>
 			<textarea id="date_description" name="date_description"></textarea>
 		</div>
 		<div class="input-wrap col-sm-6">
 			<label for="date_type">Type</label>
-			<select id="date_type" name="date_type">
+			<select id="date_type" name="date_type" class="sumo" data-placeholder="Select">
 				<option value="open">Open</option>
 				<option value="closed">Closed</option>
 			</select>
 		</div>
 		<div class="input-wrap col-sm-6">
 			<label for="date_student">Student</label>
-			<select id="date_student" name="date_student">
-				<option value="">Select</option>
+			<select id="date_student" name="date_student[]" multiple class="sumo" data-placeholder="Select">
 			{% for value in students %}
 				<option value="{{ value.entity_id }}">{{ value.name }}</option>
 			{% endfor %}
