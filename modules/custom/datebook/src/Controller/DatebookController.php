@@ -20,6 +20,7 @@ class DatebookController extends ControllerBase
   			->fields('e', array('entity_id'))
   			->fields('u', array('name'))
   			->condition('roles_target_id', 'student', '=')
+  			->orderBy('u.name', 'ASC')
   			->execute()
   			->fetchAll();
 
@@ -41,6 +42,10 @@ class DatebookController extends ControllerBase
 		$end = $_REQUEST['to'] / 1000;
 		$end = date('Y-m-d H:i:s', $end);
 		*/
+
+		$user = \Drupal::currentUser();
+		$userId = $user->id();
+		$canSave = $user->hasPermission('save calendar');
 
 		$fields = array(
 			'did',
@@ -68,6 +73,14 @@ class DatebookController extends ControllerBase
   			}
   			$item->id = $item->did;
   			$item->url = 'javascript:void(0);';
+  			$item->students = json_decode($item->students);
+
+  			if (!$canSave &&
+  				is_array($item->students) &&
+  				!in_array($userId, $item->students))
+  			{
+  				$item->description = "";
+  			}
 
   			$start = \DateTime::createFromFormat('Y-m-d H:i:s', $item->start, new \DateTimeZone('GMT'));
   			$start->setTimezone('America/Los_Angeles');
@@ -75,8 +88,6 @@ class DatebookController extends ControllerBase
 			$end = \DateTime::createFromFormat('Y-m-d H:i:s', $item->end, new \DateTimeZone('GMT'));
 			$end->setTimezone('America/Los_Angeles');
 			$item->end = $end->getTimeStamp() * 1000;
-
-			$item->students = json_decode($item->students);
 
   			$data[$key] = (array)$item;
   		}

@@ -84,12 +84,16 @@
             {% if canDelete == true %}
             	<a href="javascript:void(0);" data-task="delete" class="btn btn-red">Delete</a>
             {% elseif canStudentDelete == true %}
+           	{#
             	<a href="javascript:void(0);" data-task="student_delete" class="btn btn-red">Delete</a>
+            #}
             {% endif %}
             {% if canSave == true %}
             	<a href="javascript:void(0);" data-dismiss="modal" data-task="edit" class="btn btn-green">Edit</a>
             {% elseif canStudentSave == true %}
+            {#
             	<a href="javascript:void(0);" data-dismiss="modal" data-task="student_edit" class="btn btn-green">Edit</a>
+            #}
             {% endif %}
                 <a href="javascript:void(0);" data-dismiss="modal" class="btn btn-blue">Close</a>
             </div>
