@@ -475,7 +475,7 @@ img {
 	background: url(../images/inner-banner.jpg) right top no-repeat @green;
 	background-size: cover;
 	clear: both;
-	padding: 38px 0 38px 30px;
+	padding: 38px 0 38px 85px;
 	.container {
 		max-width: 100%;
 	}
@@ -485,6 +485,17 @@ img {
 		.serif2;
 		font-size: 50px;
 		margin: 0;
+	}
+	@media (max-width:@screen-sm-max) {
+		padding-left: 30px;
+	}
+	@media (max-width:@screen-tb-max) {
+		padding: 47px 0;
+		text-align: center;
+		background-position: left top;
+		h1 {
+			font-size: 40px;
+		}
 	}
 }
 
