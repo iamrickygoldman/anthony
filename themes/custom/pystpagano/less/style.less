@@ -310,33 +310,38 @@ img {
 	.text {
 		overflow: hidden;
 	}
+	h2 {
+		margin-top: 0.5em;
+		margin-bottom: 0.25em;
+	}
+	p {
+		margin-bottom: 1em;
+	}
 	.btn {
 		margin-top: 20px;
-	}
-}
-.field_right_column {
-	h2 {
-		margin-top: 0;
 	}
 }
 @media (min-width:@screen-lg-min) {
 	.field_left_column, .field_right_column {
 		.text {
-			max-height: 288px;
+			max-height: 24em;
 		}
 	}
 }
 @media (max-width:@screen-md-max) and (min-width:@screen-md-min) {
 	.field_left_column, .field_right_column {
 		.text {
-			max-height: 266px;
+			max-height: 23em;
+		}
+		h2 {
+			margin-top: 0.25em;
 		}
 	}
 }
 @media (max-width:@screen-sm-max) and (min-width:@screen-sm-min) {
 	.field_left_column, .field_right_column {
 		.text {
-			max-height: 192px;
+			max-height: 16.5em;
 		}
 	}
 }
